@@ -18,6 +18,7 @@ public class PostTest {
 	@Before
 	public void setup() {
 		post = new Post();
+		// can use a new dao for this test case as user is posting tweets
 		post.setUserDao(new UserDao());
 	}
 	

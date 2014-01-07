@@ -38,17 +38,21 @@ public class ReadTest {
 	@Test
 	public void shouldOutputTweets() throws UserDoesNotExistException {
 		// Given
-		List<Tweet> tweets = new ArrayList<>();
-		tweets.add(new Tweet("Its snowing outside", new Date()));
-		tweets.add(new Tweet("I forgot my wallet at home", new Date()));
-		User user = new User("Alice", tweets, new ArrayList<User>());
-		when(dao.findUser("Alice")).thenReturn(user);
+		whenQueryForAlice();
 		
 		// When
 		read.execute("Alice");
 		
 		// Then
 		verify(printer, times(2)).print(anyString());
+	}
+
+	private void whenQueryForAlice() {
+		List<Tweet> tweets = new ArrayList<>();
+		tweets.add(new Tweet("Its snowing outside", new Date()));
+		tweets.add(new Tweet("I forgot my wallet at home", new Date()));
+		User user = new User("Alice", tweets, new ArrayList<User>());
+		when(dao.findUser("Alice")).thenReturn(user);
 	}
 	
 	@Test
