@@ -22,8 +22,7 @@ public class Read extends CommandAction {
 		}
 		List<Tweet> tweets = user.tweets();
 		for(Tweet tw : tweets) {
-			print(tw.message());
+			print(user.name() + " - " + tw.message() + getTimeDifference(tw.timePosted()));
 		}
 	}
-
 }

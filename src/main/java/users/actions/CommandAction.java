@@ -1,5 +1,7 @@
 package users.actions;
 
+import java.util.Date;
+
 import users.dao.IUserDao;
 import users.domain.User;
 
@@ -19,9 +21,12 @@ public abstract class CommandAction {
 		this.dao = userDao;
 		return this.dao;
 	}
-	
-	public abstract void execute(String command) throws UserDoesNotExistException;
-	
+		
+	/**
+	 * Looks up user
+	 * @param username
+	 * @return
+	 */
 	public User lookupUser(String username) {
 		User user = dao.findUser(username);
 		if(user == null) {
@@ -38,4 +43,18 @@ public abstract class CommandAction {
 	public void setPrinter(IPrinter printer) {
 		this.printer = printer;
 	}
+	
+	public abstract void execute(String command) throws UserDoesNotExistException;
+	
+	@SuppressWarnings("deprecation")
+	public final String getTimeDifference(Date timePosted) {
+		long time = new Date().getMinutes() - timePosted.getMinutes();
+		if(time == 0) {
+			time = new Date().getSeconds() - timePosted.getSeconds();
+			return " (" + time + " seconds ago)";
+		}
+		return " (" + time + " minutes ago)";
+	}
+
+
 }

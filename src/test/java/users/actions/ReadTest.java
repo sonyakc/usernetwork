@@ -15,7 +15,6 @@ import users.dao.IUserDao;
 import users.domain.Tweet;
 import users.domain.User;
 
-
 public class ReadTest {
 
 	@Spy
