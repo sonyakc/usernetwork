@@ -35,7 +35,7 @@ public class ReadTest {
 	}
 	
 	@Test
-	public void shouldOutputTweets() throws UserDoesNotExistException {
+	public void shouldOutputTweets() throws TwitterActionFailedException {
 		// Given
 		whenQueryForAlice();
 		
@@ -55,7 +55,7 @@ public class ReadTest {
 	}
 	
 	@Test
-	public void shouldNotOutputTweets() throws UserDoesNotExistException {
+	public void shouldNotOutputTweets() throws TwitterActionFailedException {
 		// Given
 		User user = new User("Alice",  new ArrayList<Tweet>(), new ArrayList<User>());
 		when(dao.findUser("Alice")).thenReturn(user);
@@ -67,8 +67,8 @@ public class ReadTest {
 		verify(printer, never()).print(anyString());
 	}
 	
-	@Test(expected = UserDoesNotExistException.class)
-	public void userDoesNotExistNoTweets() throws UserDoesNotExistException {
+	@Test(expected = TwitterActionFailedException.class)
+	public void userDoesNotExistNoTweets() throws TwitterActionFailedException {
 		// Given
 		when(dao.findUser("Sumeet")).thenReturn(null);
 		

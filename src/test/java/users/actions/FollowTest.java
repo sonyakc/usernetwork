@@ -34,7 +34,7 @@ public class FollowTest {
 	}
 
 	@Test
-	public void aliceFollowsSonya() {
+	public void aliceFollowsSonya() throws TwitterActionFailedException {
 		follow.execute("Alice follows Sonya");
 		User alice = dao.findUser("Alice");
 		List<User> following = alice.following();
@@ -45,7 +45,7 @@ public class FollowTest {
 	}
 	
 	@Test
-	public void sonyaFollowsAlice() {
+	public void sonyaFollowsAlice() throws TwitterActionFailedException {
 		follow.execute("Sonya follows Alice");
 		User sonya = dao.findUser("Sonya");
 		List<User> following = sonya.following();
@@ -53,5 +53,10 @@ public class FollowTest {
 		
 		User alice = dao.findUser("Alice");
 		Assert.assertTrue(alice.following().isEmpty());
+	}
+	
+	@Test(expected = TwitterActionFailedException.class)
+	public void cannotFollowInvalidUser() throws TwitterActionFailedException {
+		follow.execute("Sonya follows");
 	}
 }

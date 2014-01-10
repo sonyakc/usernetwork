@@ -44,7 +44,7 @@ public abstract class CommandAction {
 		this.printer = printer;
 	}
 	
-	public abstract void execute(String command) throws UserDoesNotExistException;
+	public abstract void execute(String command) throws TwitterActionFailedException;
 	
 	@SuppressWarnings("deprecation")
 	public final String getTimeDifference(Date timePosted) {

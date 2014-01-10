@@ -8,16 +8,16 @@ import users.actions.IPrinter;
 import users.actions.Post;
 import users.actions.Read;
 import users.actions.SystemPrinter;
-import users.actions.UserDoesNotExistException;
+import users.actions.TwitterActionFailedException;
 import users.actions.Wall;
 
 public class TwitterConsole {
 
 	/**
 	 * @param args
-	 * @throws UserDoesNotExistException 
+	 * @throws TwitterActionFailedException 
 	 */
-	public static void main(String[] args) throws UserDoesNotExistException {
+	public static void main(String[] args) throws TwitterActionFailedException {
 		IUserDao dao = new UserDao();
 		IPrinter printer = new SystemPrinter();
 		

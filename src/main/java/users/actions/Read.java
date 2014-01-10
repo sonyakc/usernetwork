@@ -15,10 +15,10 @@ import users.domain.User;
 public class Read extends CommandAction {
 	
 	@Override
-	public void execute(String command) throws UserDoesNotExistException {
+	public void execute(String command) throws TwitterActionFailedException {
 		User user = lookupUser(command);
 		if(user == null) {
-			throw new UserDoesNotExistException("Cannot read tweets for invalid username");
+			throw new TwitterActionFailedException("Cannot read tweets for invalid username");
 		}
 		List<Tweet> tweets = user.tweets();
 		for(Tweet tw : tweets) {

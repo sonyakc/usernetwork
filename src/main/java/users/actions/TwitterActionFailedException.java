@@ -1,10 +1,10 @@
 package users.actions;
 
-public class UserDoesNotExistException extends Exception {
+public class TwitterActionFailedException extends Exception {
 
 	private String message;
 
-	public UserDoesNotExistException(String msg) {
+	public TwitterActionFailedException(String msg) {
 		this.setMessage(msg);
 	}
 
